@@ -4,12 +4,17 @@ import logging
 import os
 import shutil
 import tempfile
+import sys
 
 import setuptools
 import setuptools.command.build_ext
 
-import distutils
-import distutils.sysconfig
+if sys.version_info[0] >=3 and sys.version_info[1] > 11:
+    import setuptools._distutils as distutils
+    import setuptools._distutils.sysconfig as distutils_sysconfig
+else:
+    import distutils
+    import distutils.sysconfig as distutils_sysconfig
 
 import cppimport
 from cppimport.filepaths import make_absolute
@@ -96,7 +101,7 @@ def _handle_strict_prototypes():
     if not cppimport.settings["remove_strict_prototypes"]:
         return
 
-    cfg_vars = distutils.sysconfig.get_config_vars()
+    cfg_vars = distutils_sysconfig.get_config_vars()
     for key, value in cfg_vars.items():
         if value is str:
             cfg_vars[key] = value.replace("-Wstrict-prototypes", "")
