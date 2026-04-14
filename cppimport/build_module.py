@@ -3,8 +3,8 @@ import io
 import logging
 import os
 import shutil
-import tempfile
 import sys
+import tempfile
 
 import setuptools
 import setuptools.command.build_ext
