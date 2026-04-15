@@ -132,7 +132,7 @@ class BuildImportCppExt(setuptools.command.build_ext.build_ext):
             dest_filename = os.path.join(ext.libdest, os.path.basename(filename))
 
             distutils.file_util.copy_file(
-                src_filename, dest_filename, verbose=self.verbose, dry_run=self.dry_run
+                src_filename, dest_filename, verbose=self.verbose
             )
 
 
