@@ -3,13 +3,13 @@ import io
 import logging
 import os
 import shutil
-import tempfile
 import sys
+import tempfile
 
 import setuptools
 import setuptools.command.build_ext
 
-if sys.version_info[0] >=3 and sys.version_info[1] > 11:
+if sys.version_info[0] >= 3 and sys.version_info[1] > 11:
     import setuptools._distutils as distutils
     import setuptools._distutils.sysconfig as distutils_sysconfig
 else:
@@ -132,7 +132,7 @@ class BuildImportCppExt(setuptools.command.build_ext.build_ext):
             dest_filename = os.path.join(ext.libdest, os.path.basename(filename))
 
             distutils.file_util.copy_file(
-                src_filename, dest_filename, verbose=self.verbose, dry_run=self.dry_run
+                src_filename, dest_filename, verbose=self.verbose
             )
 
 
